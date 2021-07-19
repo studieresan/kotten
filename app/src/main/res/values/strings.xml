@@ -14,6 +14,8 @@
     <string name="logout">Log out</string>
     <string name="generic_error_message">Hmm, something went wrong. Please try again.</string>
     <string name="cancel">Cancel</string>
+    <string name="confirm" translatable="false">OK</string>
+    <string name="close">Close</string>
 
     <!-- Event -->
     <string name="event" translatable="false">Events</string>
@@ -45,6 +47,7 @@
     <string name="happenings_buddies">Buddies</string>
     <string name="happenings_delete">Delete happening?</string>
     <string name="happenings_delete_confirm">Delete</string>
+    <string name="happenings_no_location">You need to pick a location</string>
 
     <!-- Trip -->
     <string name="trip">Trip</string>

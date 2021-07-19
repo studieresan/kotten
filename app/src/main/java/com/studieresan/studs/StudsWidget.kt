@@ -64,7 +64,7 @@ class StudsWidget : AppWidgetProvider() {
                 val today = LocalDateTime.now()
                 val orderedEvents = events.sortedBy { it.date }
                 val nextEvent =
-                        orderedEvents.firstOrNull { LocalDateTime.parse(it.date as CharSequence?, DATE_FORMATTER).toLocalDate() >= today.toLocalDate() }
+                        orderedEvents.firstOrNull { if (it.date != null) it.date?.toLocalDate() >= today.toLocalDate() else false }
 
                 if (nextEvent !== null) {
 

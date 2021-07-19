@@ -54,8 +54,8 @@ class HappeningsFragment : Fragment() {
             startActivity(intent)
         }
 
-        fetchHappenings(false)
-        happenings_swipe_refresh.setOnRefreshListener { fetchHappenings(true) }
+        fetchHappenings()
+        happenings_swipe_refresh.setOnRefreshListener { fetchHappenings() }
 
         happenings_view_pager.offscreenPageLimit = 2
 
@@ -65,7 +65,7 @@ class HappeningsFragment : Fragment() {
 
     }
 
-    private fun fetchHappenings(refresh: Boolean) {
+    private fun fetchHappenings() {
 
         CoroutineScope(Dispatchers.Main).launch {
             val response = try {

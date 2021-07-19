@@ -1,6 +1,7 @@
 package com.studieresan.studs.happenings
 
 import HappeningCreateMutation
+import HappeningsQuery
 import UsersQuery
 import android.content.Context
 import android.content.res.ColorStateList
@@ -17,6 +18,8 @@ import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProviders
+import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await
 import com.apollographql.apollo.exception.ApolloException
@@ -42,7 +45,9 @@ import com.studieresan.studs.R
 import com.studieresan.studs.StudsApplication
 import com.studieresan.studs.data.StudsPreferences
 import com.studieresan.studs.graphql.apolloClient
+import com.studieresan.studs.happenings.viewmodels.HappeningsViewModel
 import com.studieresan.studs.net.StudsRepository
+import kotlinx.android.synthetic.main.fragment_happenings.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -52,7 +57,6 @@ import type.HappeningInput
 import type.PropertiesInputType
 import javax.inject.Inject
 
-
 class CreateHappeningActivity : AppCompatActivity() {
 
     private var selectedEmoji: RadioButton? = null
@@ -60,7 +64,6 @@ class CreateHappeningActivity : AppCompatActivity() {
     private var locationName: String? = null
     private var locationType: String? = null
     private var hostID: String? = null
-    private var currentLocation: Location? = null
 
     private var participants = mutableListOf<String>()
 
@@ -79,22 +82,14 @@ class CreateHappeningActivity : AppCompatActivity() {
 
         // Initialize the SDK
         Places.initialize(applicationContext, MAPS_API_KEY)
-
-        // Create a new PlacesClient instance
-        val placesClient = Places.createClient(this)
-
-        // Initialize the AutocompleteSupportFragment.
         val autocompleteFragment =
                 supportFragmentManager.findFragmentById(R.id.autocomplete_fragment)
                         as AutocompleteSupportFragment
-
-        // Specify the types of place data to return.
         autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.TYPES))
 
         // Sets location bias to Sweden, change to device location in future
-        autocompleteFragment.setLocationRestriction(RectangularBounds.newInstance(LatLng(55.37514, 11.1712), LatLng(67.85572, 23.15645)))
+        autocompleteFragment.setLocationBias(RectangularBounds.newInstance(LatLng(55.37514, 11.1712), LatLng(67.85572, 23.15645)))
 
-        // Set up a PlaceSelectionListener to handle the response.
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
                 locationName = place.name
@@ -106,14 +101,14 @@ class CreateHappeningActivity : AppCompatActivity() {
             }
 
             override fun onError(p0: Status) {
-                println("An error occurred: $p0")
+                raiseAlert(this@CreateHappeningActivity.getString(R.string.generic_error_message), this@CreateHappeningActivity)
             }
         })
 
         selectedEmoji = findViewById<View>(R.id.create_emoji1) as RadioButton
 
         val radioGroup = findViewById<View>(R.id.create_rb) as RadioGroup
-        radioGroup.setOnCheckedChangeListener { group, checkedId -> // checkedId is the RadioButton selected
+        radioGroup.setOnCheckedChangeListener { _, checkedId -> // checkedId is the RadioButton selected
             selectedEmoji!!.alpha = 0.3F
             selectedEmoji = findViewById<View>(checkedId) as RadioButton
             selectedEmoji!!.alpha = 1F
@@ -137,7 +132,6 @@ class CreateHappeningActivity : AppCompatActivity() {
         val states = arrayOf(
                 intArrayOf(-android.R.attr.state_checked),
                 intArrayOf(android.R.attr.state_checked)
-
         )
 
         val colors = intArrayOf(ContextCompat.getColor(context, R.color.lightGrey), ContextCompat.getColor(context, R.color.colorPrimaryLight))
@@ -202,7 +196,7 @@ class CreateHappeningActivity : AppCompatActivity() {
     private fun createHappening(context: Context) {
 
         if (coordinates.isNullOrEmpty()) {
-            raiseAlert("Välj en plats", this)
+            raiseAlert(getString(R.string.happenings_no_location), this)
             return
         }
 
@@ -225,20 +219,36 @@ class CreateHappeningActivity : AppCompatActivity() {
                 description = description.editText?.text.toString().toInput())
 
         CoroutineScope(Dispatchers.Main).launch {
-            val response = try {
+            try {
                 apolloClient(context).mutate(HappeningCreateMutation(happening = happening.toInput())).await()
                 progressBar.isVisible = false
+                fetchHappenings()
                 finish()
             } catch (e: ApolloException) {
-                raiseAlert("Nått gick fel, prova igen!", this@CreateHappeningActivity)
+                raiseAlert(getString(R.string.generic_error_message), this@CreateHappeningActivity)
             }
+        }
+    }
+
+    private fun fetchHappenings() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val response = try {
+                apolloClient(this@CreateHappeningActivity).query(HappeningsQuery()).await()
+            } catch (e: ApolloException) {
+                null
+            }
+
+            val happenings = response?.data?.happenings?.filterNotNull()?.sortedByDescending { happening -> happening.created }
+            val viewModel = ViewModelProviders.of(this@CreateHappeningActivity).get(HappeningsViewModel::class.java)
+            viewModel.setHappenings(happenings)
+
         }
     }
 
     private fun raiseAlert(text: String, context: Context) {
         MaterialAlertDialogBuilder(context)
                 .setTitle(text)
-                .setPositiveButton("Ok", null)
+                .setPositiveButton(getString(R.string.confirm), null)
                 .show()
     }
 

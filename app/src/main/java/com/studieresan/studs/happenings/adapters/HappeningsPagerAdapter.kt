@@ -13,7 +13,6 @@ class HappeningsPagerAdapter(private val context: HappeningsFragment, fm: Fragme
     : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page
         return if (position === 0) HappeningsMapsFragment() else HappeningsListFragment()
     }
 

@@ -58,7 +58,7 @@ class HappeningRecyclerViewAdapter(
         val zoneOffset = odt.offset
         val dateInMilli = happening.created?.atOffset(zoneOffset)?.toInstant()?.toEpochMilli()
         val displayDate = if (dateInMilli != null) DateUtils.formatDateTime(context, dateInMilli, DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_ABBREV_TIME or DateUtils.FORMAT_SHOW_WEEKDAY).capitalize() else ""
-        val detailedDate = if (dateInMilli != null) DateUtils.formatDateTime(context, dateInMilli, DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_NUMERIC_DATE or DateUtils.FORMAT_SHOW_WEEKDAY).capitalize() else ""
+        val detailedDate = if (dateInMilli != null) DateUtils.formatDateTime(context, dateInMilli, DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_WEEKDAY).capitalize() else ""
 
         holder.emojiView.text = happening.emoji
         holder.titleView.text = happening.title
@@ -93,7 +93,7 @@ class HappeningRecyclerViewAdapter(
 
             val builder = MaterialAlertDialogBuilder(context!!)
                     .setView(customView)
-                    .setPositiveButton("Stäng") { dialog, which ->
+                    .setPositiveButton(context!!.getString(R.string.close)) { dialog, _ ->
                         dialog.dismiss()
                     }
                     .create()
@@ -106,11 +106,11 @@ class HappeningRecyclerViewAdapter(
             holder.deleteBtn.isVisible = true
             holder.deleteBtn.setOnClickListener {
                 MaterialAlertDialogBuilder(context!!)
-                        .setTitle("Ta bort happening?")
-                        .setNegativeButton("Avbryt") { dialog, which ->
+                        .setTitle(context!!.getString(R.string.happenings_delete))
+                        .setNegativeButton(context!!.getString(R.string.confirm)) { dialog, _ ->
                             dialog.dismiss()
                         }
-                        .setPositiveButton("Ta bort") { dialog, which ->
+                        .setPositiveButton(context!!.getString(R.string.happenings_delete_confirm)) { dialog, which ->
                             CoroutineScope(Dispatchers.Main).launch {
                                 val response = try {
                                     apolloClient(context!!).mutate(HappeningDeleteMutation(id = happening.id.toInput())).await()

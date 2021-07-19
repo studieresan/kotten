@@ -13,6 +13,7 @@
     <string name="logout">Logga ut</string>
     <string name="generic_error_message">Hmm, något gick fel. Försök igen.</string>
     <string name="cancel">Avbryt</string>
+    <string name="close">Stäng</string>
 
     <!-- Event -->
     <string name="upcoming_events">Kommande events</string>
@@ -37,6 +38,7 @@
     <string name="happenings_buddies">Polare</string>
     <string name="happenings_delete">Ta bort happening?</string>
     <string name="happenings_delete_confirm">Ta bort</string>
+    <string name="happenings_no_location">Du måste välja en plats</string>
 
     <!-- Trip -->
     <string name="trip">Resa</string>
