@@ -8,7 +8,6 @@ import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.location.Location
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -19,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
-import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await
 import com.apollographql.apollo.exception.ApolloException
@@ -145,7 +143,7 @@ class CreateHappeningActivity : AppCompatActivity() {
                 null
             }
 
-            var users = response?.data?.users?.filterNotNull()?.sortedBy { user -> user.firstName }
+            val users = response?.data?.users?.filterNotNull()?.sortedBy { user -> user.firstName }
             val participantChips = findViewById<View>(R.id.create_participant_chips) as ChipGroup
             users?.forEach { user ->
 
@@ -204,7 +202,7 @@ class CreateHappeningActivity : AppCompatActivity() {
         progressBar.isVisible = true
 
         val description = findViewById<View>(R.id.create_desc) as TextInputLayout
-        var title = if (participants.isEmpty()) "Sitter ensam, joina!" else "Sitter med ${participants.size} andra!"
+        val title = if (participants.isEmpty()) "Sitter ensam, joina!" else "Sitter med ${participants.size} andra!"
 
         val happening = HappeningInput(
                 host = hostID.toInput(),

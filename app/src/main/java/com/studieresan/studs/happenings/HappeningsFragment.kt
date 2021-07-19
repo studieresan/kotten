@@ -45,7 +45,7 @@ class HappeningsFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(requireActivity()).get(HappeningsViewModel::class.java)
 
-        viewModel!!.mapCenter.observe(viewLifecycleOwner, Observer<LatLng> {
+        viewModel!!.mapCenter.observe(viewLifecycleOwner, Observer {
             selectTab(0)
         })
 

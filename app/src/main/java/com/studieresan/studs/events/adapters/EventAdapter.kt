@@ -179,7 +179,6 @@ class EventAdapter(
     inner class EmptyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     companion object {
-        val DATE_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<EventsQuery.Event>() {
             override fun areItemsTheSame(oldItem: EventsQuery.Event, newItem: EventsQuery.Event): Boolean = oldItem.id == newItem.id
 

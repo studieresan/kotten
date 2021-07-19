@@ -22,7 +22,7 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".happenings.CreateHappeningActivity"></activity>
+        <activity android:name=".happenings.CreateHappeningActivity" />
         <!-- The API key for Google Maps-based APIs is defined as a local resource -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"

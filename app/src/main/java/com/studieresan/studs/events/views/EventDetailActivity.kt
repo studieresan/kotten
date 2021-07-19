@@ -32,7 +32,7 @@ class EventDetailActivity : StudsActivity(), EventDetailContract.View {
         setContentView(R.layout.activity_event_detail)
         eventID = intent.getStringExtra(IntentExtra.EVENT_ID)
 
-        var view = this
+        val view = this
         var event: EventQuery.Event
 
         lifecycleScope.launchWhenResumed {
@@ -81,7 +81,7 @@ class EventDetailActivity : StudsActivity(), EventDetailContract.View {
                 tv_company_name.text = event.company?.name
                 tv_company_location.text = if (event.location.isNullOrEmpty()) getString(R.string.no_location_available) else event.location
                 tv_private_description.text = if (event.privateDescription.isNullOrEmpty()) getString(R.string.no_description_available) else event.privateDescription
-                presenter = EventDetailPresenter(view, event)
+                presenter = EventDetailPresenter(view)
 
             }
         }

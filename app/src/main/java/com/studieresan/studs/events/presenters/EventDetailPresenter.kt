@@ -1,12 +1,10 @@
 package com.studieresan.studs.events.presenters
 
-import EventQuery
 import com.studieresan.studs.events.contracts.EventDetailContract
 import io.reactivex.disposables.Disposable
 
 class EventDetailPresenter(
         view: EventDetailContract.View,
-        private val event: EventQuery.Event,
 ) : EventDetailContract.Presenter {
 
     private var view: EventDetailContract.View? = view

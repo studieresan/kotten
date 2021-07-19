@@ -30,27 +30,27 @@ import java.time.OffsetDateTime
 
 class HappeningsMapsFragment : Fragment() {
 
-    var loaded: Boolean = false
-    var centerLocation: LatLng? = null
-    var map: GoogleMap? = null
+    private var loaded: Boolean = false
+    private var centerLocation: LatLng? = null
+    private var map: GoogleMap? = null
 
     private val callback = OnMapReadyCallback { googleMap ->
 
         map = googleMap
-        var viewModel = ViewModelProviders.of(requireActivity()).get(HappeningsViewModel::class.java)
+        val viewModel = ViewModelProviders.of(requireActivity()).get(HappeningsViewModel::class.java)
 
-        viewModel.mapCenter.observe(viewLifecycleOwner, Observer<LatLng> { center ->
+        viewModel.mapCenter.observe(viewLifecycleOwner, Observer { center ->
             centerLocation = center
-            var cameraPosition = CameraPosition.Builder()
+            val cameraPosition = CameraPosition.Builder()
                     .target(center)
                     .zoom(16f)
                     .build()
             map?.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
         })
 
-        viewModel.happenings.observe(viewLifecycleOwner, Observer<List<HappeningsQuery.Happening>> { happenings ->
+        viewModel.happenings.observe(viewLifecycleOwner, Observer { happenings ->
             happenings.map { happening ->
-                if (!happening.location?.geometry?.coordinates.isNullOrEmpty() && happening.location?.geometry?.coordinates?.get(0) != null && happening.location.geometry.coordinates.get(1) != null) {
+                if (!happening.location?.geometry?.coordinates.isNullOrEmpty() && happening.location?.geometry?.coordinates?.get(0) != null && happening.location.geometry.coordinates[1] != null) {
 
                     val coordinates = LatLng(happening.location.geometry.coordinates[1]!!.toDouble(), happening.location.geometry.coordinates[0]!!.toDouble())
                     val odt = OffsetDateTime.now()
@@ -59,7 +59,7 @@ class HappeningsMapsFragment : Fragment() {
                     val displayDate = if (dateInMilli != null) DateUtils.formatDateTime(context, dateInMilli, DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_ABBREV_TIME or DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_WEEKDAY).capitalize() else ""
 
                     val marker = MarkerOptions().position(coordinates).title("${happening.host?.firstName} ${happening.host?.lastName?.get(0)} ${happening.title?.decapitalize()} ${happening.emoji}")
-                            .snippet("${displayDate} @ ${happening.location.properties?.name}")
+                            .snippet("$displayDate @ ${happening.location.properties?.name}")
 
                     Glide.with(this)
                             .asBitmap()
@@ -79,7 +79,7 @@ class HappeningsMapsFragment : Fragment() {
                             })
 
                     if (!loaded) {
-                        var cameraPosition = CameraPosition.Builder()
+                        val cameraPosition = CameraPosition.Builder()
                                 .target(coordinates)
                                 .zoom(12f)
                                 .build()

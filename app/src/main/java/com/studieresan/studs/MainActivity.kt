@@ -11,8 +11,6 @@ import com.studieresan.studs.profile.ProfileFragment
 import com.studieresan.studs.util.inTransaction
 import kotlinx.android.synthetic.main.activity_main.*
 
-private const val TOPIC_ALL = "all"
-
 class MainActivity : StudsActivity() {
 
     private var currentFragmentId = 0

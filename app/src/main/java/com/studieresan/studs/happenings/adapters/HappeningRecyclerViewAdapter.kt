@@ -68,7 +68,7 @@ class HappeningRecyclerViewAdapter(
 
         holder.cardView.setOnClickListener {
 
-            if (!happening.location?.geometry?.coordinates.isNullOrEmpty() && happening.location?.geometry?.coordinates?.get(0) != null && happening.location.geometry.coordinates.get(1) != null) {
+            if (!happening.location?.geometry?.coordinates.isNullOrEmpty() && happening.location?.geometry?.coordinates?.get(0) != null && happening.location.geometry.coordinates[1] != null) {
                 val coordinates = LatLng(happening.location.geometry.coordinates[1]!!.toDouble(), happening.location.geometry.coordinates[0]!!.toDouble())
                 viewModel?.setMapCenter(coordinates)
             }

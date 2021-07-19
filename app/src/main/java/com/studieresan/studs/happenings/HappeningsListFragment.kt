@@ -33,7 +33,7 @@ class HappeningsListFragment : Fragment() {
 
         val viewModel = ViewModelProviders.of(requireActivity()).get(HappeningsViewModel::class.java)
 
-        viewModel.happenings.observe(viewLifecycleOwner, Observer<List<HappeningsQuery.Happening>> { t ->
+        viewModel.happenings.observe(viewLifecycleOwner, Observer { t ->
             if (view is RecyclerView) {
 
                 with(view) {
@@ -54,11 +54,5 @@ class HappeningsListFragment : Fragment() {
     companion object {
         const val ARG_COLUMN_COUNT = "column-count"
 
-        fun newInstance(columnCount: Int) =
-                HappeningsListFragment().apply {
-                    arguments = Bundle().apply {
-                        putInt(ARG_COLUMN_COUNT, columnCount)
-                    }
-                }
     }
 }

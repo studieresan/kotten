@@ -16,7 +16,7 @@ class HappeningsPagerAdapter(private val context: HappeningsFragment, fm: Fragme
         return if (position === 0) HappeningsMapsFragment() else HappeningsListFragment()
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return if (position === 0) context.getString(R.string.map_tab) else context.getString(R.string.list_tab)
     }
 
