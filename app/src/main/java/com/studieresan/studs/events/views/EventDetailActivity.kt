@@ -7,9 +7,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateUtils.*
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
-import com.apollographql.apollo.api.Input
+import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await
 import com.apollographql.apollo.exception.ApolloException
 import com.studieresan.studs.R
@@ -33,12 +32,12 @@ class EventDetailActivity : StudsActivity(), EventDetailContract.View {
         setContentView(R.layout.activity_event_detail)
         eventID = intent.getStringExtra(IntentExtra.EVENT_ID)
 
-        var view = this
+        val view = this
         var event: EventQuery.Event
 
         lifecycleScope.launchWhenResumed {
             val response = try {
-                apolloClient(view.applicationContext).query(EventQuery(id = Input.fromNullable(eventID))).await()
+                apolloClient(view.applicationContext).query(EventQuery(id = eventID.toInput())).await()
             } catch (e: ApolloException) {
                 null
             }
@@ -49,7 +48,7 @@ class EventDetailActivity : StudsActivity(), EventDetailContract.View {
 
             if (!response.hasErrors()) {
                 if (event.beforeSurvey.isNullOrEmpty()) {
-                    btn_pre_event.alpha = .5f;
+                    btn_pre_event.alpha = .5f
                     btn_pre_event.isClickable = false
                 } else {
                     btn_pre_event.setOnClickListener {
@@ -59,7 +58,7 @@ class EventDetailActivity : StudsActivity(), EventDetailContract.View {
                     }
                 }
                 if (event.afterSurvey.isNullOrEmpty()) {
-                    btn_post_event.alpha = .5f;
+                    btn_post_event.alpha = .5f
                     btn_post_event.isClickable = false
                 } else {
                     btn_post_event.setOnClickListener {
@@ -82,7 +81,7 @@ class EventDetailActivity : StudsActivity(), EventDetailContract.View {
                 tv_company_name.text = event.company?.name
                 tv_company_location.text = if (event.location.isNullOrEmpty()) getString(R.string.no_location_available) else event.location
                 tv_private_description.text = if (event.privateDescription.isNullOrEmpty()) getString(R.string.no_description_available) else event.privateDescription
-                presenter = EventDetailPresenter(view, event)
+                presenter = EventDetailPresenter(view)
 
             }
         }

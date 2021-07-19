@@ -1,8 +1,8 @@
 package com.studieresan.studs.di
 
+import com.studieresan.studs.StudsApplication
 import dagger.Module
 import dagger.Provides
-import com.studieresan.studs.StudsApplication
 import javax.inject.Singleton
 
 @Module

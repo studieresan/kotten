@@ -13,7 +13,9 @@
     <string name="forgot_your_password">Get a new one!</string>
     <string name="logout">Log out</string>
     <string name="generic_error_message">Hmm, something went wrong. Please try again.</string>
-
+    <string name="cancel">Cancel</string>
+    <string name="confirm" translatable="false">OK</string>
+    <string name="close">Close</string>
 
     <!-- Event -->
     <string name="event" translatable="false">Events</string>
@@ -27,18 +29,30 @@
     <string name="pre_form" translatable="false">Pre-event</string>
     <string name="post_form" translatable="false">Post-event</string>
 
-
     <!-- Profile/Settings-->
     <string name="profile">Profile</string>
     <string name="dark_mode" translatable="false">Dark mode</string>
     <string name="notification_settings">Notification settings</string>
     <string name="preferences">Preferences</string>
+    <string name="tr_countdown2">days left until the trip of a lifetime!</string>
+
+    <!-- Happenings -->
+    <string name="happenings" translatable="false">Happenings</string>
+    <string name="map_tab">Map</string>
+    <string name="list_tab">List</string>
+    <string name="happenings_create">Where are you?</string>
+    <string name="happenings_add">Add</string>
+    <string name="happenings_location">Location</string>
+    <string name="happenings_description">Description</string>
+    <string name="happenings_buddies">Buddies</string>
+    <string name="happenings_delete">Delete happening?</string>
+    <string name="happenings_delete_confirm">Delete</string>
+    <string name="happenings_no_location">You need to pick a location</string>
 
     <!-- Trip -->
     <string name="trip">Trip</string>
     <string name="tr_omg" translatable="false">Omg!</string>
     <string name="tr_countdown1">There are only</string>
-    <string name="tr_countdown2">days left until the trip of a lifetime!</string>
     <string name="tr_datemargin" translatable="false">(± 10)</string>
     <string name="tr_emoji_placeholder" translatable="false">X X</string>
     <string name="tr_countdown_placeholder" translatable="false">XXX</string>

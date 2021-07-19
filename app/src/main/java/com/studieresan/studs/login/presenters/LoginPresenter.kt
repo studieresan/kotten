@@ -1,9 +1,9 @@
 package com.studieresan.studs.login.presenters
 
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import com.studieresan.studs.login.contracts.LoginContract
 import com.studieresan.studs.net.StudsRepository
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
 class LoginPresenter(
         private val view: LoginContract.View,

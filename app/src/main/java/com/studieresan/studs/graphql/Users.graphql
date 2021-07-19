@@ -1,0 +1,13 @@
+query Users {
+  users(studsYear: 2021) {
+    id
+    firstName
+    lastName
+    info {
+      picture
+    }
+  }
+}
+
+
+

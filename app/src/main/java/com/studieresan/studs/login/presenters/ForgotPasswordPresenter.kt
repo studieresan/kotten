@@ -1,10 +1,10 @@
 package com.studieresan.studs.login.presenters
 
 import android.util.Patterns
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import com.studieresan.studs.login.contracts.ForgotPasswordContract
 import com.studieresan.studs.net.StudsRepository
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
 class ForgotPasswordPresenter(
         private val view: ForgotPasswordContract.View,

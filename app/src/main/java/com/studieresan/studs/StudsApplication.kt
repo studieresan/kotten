@@ -2,11 +2,7 @@ package com.studieresan.studs
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.studieresan.studs.di.AppModule
-import com.studieresan.studs.di.DaggerStudsApplicationComponent
-import com.studieresan.studs.di.NetModule
-import com.studieresan.studs.di.ServiceModule
-import com.studieresan.studs.di.StudsApplicationComponent
+import com.studieresan.studs.di.*
 import timber.log.Timber
 
 class StudsApplication : Application() {

@@ -30,6 +30,8 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:visibility="gone"
+            android:indeterminateTint="@color/colorAccent"
+            android:indeterminateTintMode="src_in"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

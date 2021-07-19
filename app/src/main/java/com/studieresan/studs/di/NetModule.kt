@@ -1,5 +1,8 @@
 package com.studieresan.studs.di
 
+import com.studieresan.studs.StudsApplication
+import com.studieresan.studs.data.AddJwtInterceptor
+import com.studieresan.studs.data.ReceivedJwtInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -8,9 +11,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import com.studieresan.studs.StudsApplication
-import com.studieresan.studs.data.AddJwtInterceptor
-import com.studieresan.studs.data.ReceivedJwtInterceptor
 import javax.inject.Singleton
 
 private const val STUDS_URL = "https://studs-overlord.herokuapp.com"

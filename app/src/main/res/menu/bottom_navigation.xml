@@ -5,9 +5,9 @@
         android:icon="@drawable/ic_business_center_black_24dp"
         android:title="@string/event" />
     <item
-        android:id="@+id/navigation_trip"
-        android:icon="@drawable/ic_flight_takeoff_black_24dp"
-        android:title="@string/trip" />
+        android:id="@+id/navigation_happenings"
+        android:icon="@drawable/ic_happenings_black_24dp"
+        android:title="@string/happenings" />
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_person_black_24dp"

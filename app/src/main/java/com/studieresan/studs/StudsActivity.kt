@@ -48,10 +48,6 @@ abstract class StudsActivity : AppCompatActivity(), BaseView {
         startActivity(intent)
     }
 
-    fun setFullscreenLayout() = window.decorView.run {
-        systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_FULLSCREEN
-    }
-
     val view: View by lazy {
         findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
     }

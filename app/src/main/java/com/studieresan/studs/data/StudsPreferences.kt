@@ -4,6 +4,7 @@ import android.content.Context
 import android.preference.PreferenceManager
 import com.studieresan.studs.R
 
+private const val ID = "id"
 private const val NAME = "name"
 private const val PICTURE = "picture"
 private const val POSITION = "position"
@@ -32,6 +33,17 @@ object StudsPreferences {
                             .getString(EMAIL, "")
             )
 
+    fun setID(context: Context, id: String) =
+            PreferenceManager.getDefaultSharedPreferences(context)
+                    .edit()
+                    .putString(ID, id)
+                    .apply()
+
+    fun getID(context: Context) = checkNotNull(
+            PreferenceManager.getDefaultSharedPreferences(context)
+                    .getString(ID, "")
+    )
+
     fun setName(context: Context, name: String) =
             PreferenceManager.getDefaultSharedPreferences(context)
                     .edit()
@@ -58,7 +70,7 @@ object StudsPreferences {
     fun setPosition(context: Context, position: String?) =
             PreferenceManager.getDefaultSharedPreferences(context)
                     .edit()
-                    .putString(POSITION, if (position != null) position else "")
+                    .putString(POSITION, position ?: "")
                     .apply()
 
     fun getPosition(context: Context) = checkNotNull(
@@ -81,20 +93,8 @@ object StudsPreferences {
     fun setPermissions(context: Context, permissions: List<String>?) =
             PreferenceManager.getDefaultSharedPreferences(context)
                     .edit()
-                    .putStringSet(PERMISSIONS, if (permissions != null) permissions.toSet() else listOf<String>().toSet())
+                    .putStringSet(PERMISSIONS, permissions?.toSet() ?: listOf<String>().toSet())
                     .apply()
-
-    fun getPermissions(context: Context): Set<String> = checkNotNull(
-            PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
-                    PERMISSIONS, emptySet()
-            )
-    )
-
-    fun liveLocationSharingIsAllowed(context: Context): Boolean =
-            PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                    context.getString(R.string.live_location_preference_key),
-                    true
-            )
 
     fun setJwtToken(context: Context, token: String) =
             PreferenceManager.getDefaultSharedPreferences(context)

@@ -1,0 +1,33 @@
+query Happenings {
+  happenings {
+    id
+    host {
+      id
+      firstName
+      lastName
+      info {
+        picture
+      }
+    }
+    participants {
+      id
+      firstName
+      lastName
+      info {
+        picture
+      }
+    }
+    location {
+      geometry {
+        coordinates
+      }
+      properties {
+        name
+      }
+    }
+    created
+    title
+    emoji
+    description
+  }
+}

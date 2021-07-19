@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".happenings.CreateHappeningActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/default_margin_medium"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cancel_happening"
+                    style="@style/FlatButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/cancel"
+                    android:textColor="@color/colorAccent" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6" />
+
+                <Button
+                    android:id="@+id/btn_add_happening"
+                    style="@style/FlatButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/happenings_add"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_create_title"
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/default_margin_small"
+                android:layout_marginEnd="@dimen/default_margin_small"
+                android:layout_marginBottom="@dimen/default_margin_medium"
+                android:gravity="center_horizontal"
+                android:text="@string/happenings_create"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/create_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_medium"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingHorizontal="15dp">
+
+                <RadioButton
+                    android:id="@+id/create_emoji1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin_small"
+                    android:button="@color/colorAccent"
+                    android:text="🍻"
+                    android:textSize="34sp" />
+
+                <RadioButton
+                    android:id="@+id/create_emoji2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin_small"
+                    android:alpha="0.5"
+                    android:button="@color/colorAccent"
+                    android:text="🍷"
+                    android:textSize="34sp" />
+
+                <RadioButton
+                    android:id="@+id/create_emoji3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin_small"
+                    android:alpha="0.5"
+                    android:button="@color/colorAccent"
+                    android:text="🍔"
+                    android:textSize="34sp" />
+
+                <RadioButton
+                    android:id="@+id/create_emoji4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin_small"
+                    android:alpha="0.5"
+                    android:button="@color/colorAccent"
+                    android:text="☕️"
+                    android:textSize="34sp" />
+
+                <RadioButton
+                    android:id="@+id/create_emoji5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin_small"
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:button="@color/colorAccent"
+                    android:text="🚶"
+                    android:textSize="34sp" />
+
+                <RadioButton
+                    android:id="@+id/create_emoji6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin_small"
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:button="@color/colorAccent"
+                    android:text="🤔"
+                    android:textSize="34sp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin_large"
+                android:layout_marginTop="@dimen/default_margin_huge"
+                android:text="@string/happenings_location"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/autocomplete_fragment"
+                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/lightGrey" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_create_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin_large"
+                android:layout_marginTop="@dimen/default_margin_huge"
+                android:text="@string/happenings_description"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/create_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin_large"
+                    android:layout_marginTop="@dimen/default_margin_small"
+                    android:backgroundTint="@color/lightGrey"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_create_participants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin_large"
+                android:layout_marginTop="@dimen/default_margin_huge"
+                android:text="@string/happenings_buddies"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/create_participant_chips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin_large"
+                android:layout_marginTop="@dimen/default_margin_small"
+                android:layout_marginBottom="@dimen/default_margin_huge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/create_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/colorAccent"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

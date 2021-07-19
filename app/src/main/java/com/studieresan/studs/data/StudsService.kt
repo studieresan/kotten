@@ -1,12 +1,12 @@
 package com.studieresan.studs.data
 
+import com.studieresan.studs.data.models.ForgotPasswordRequest
+import com.studieresan.studs.data.models.LoginResponse
+import com.studieresan.studs.data.models.LoginUserRequest
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.POST
-import com.studieresan.studs.data.models.ForgotPasswordRequest
-import com.studieresan.studs.data.models.LoginResponse
-import com.studieresan.studs.data.models.LoginUserRequest
 
 interface StudsService {
 

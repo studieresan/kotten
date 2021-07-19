@@ -9,7 +9,6 @@ import com.studieresan.studs.data.StudsPreferences
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import okhttp3.logging.HttpLoggingInterceptor
 import type.CustomType
 import java.text.ParseException
 import java.time.LocalDateTime

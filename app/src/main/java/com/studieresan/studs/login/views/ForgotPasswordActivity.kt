@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_forgot_password.*
 import com.studieresan.studs.R
 import com.studieresan.studs.StudsActivity
 import com.studieresan.studs.StudsApplication
@@ -14,6 +13,7 @@ import com.studieresan.studs.data.IntentExtra
 import com.studieresan.studs.login.contracts.ForgotPasswordContract
 import com.studieresan.studs.login.presenters.ForgotPasswordPresenter
 import com.studieresan.studs.net.StudsRepository
+import kotlinx.android.synthetic.main.activity_forgot_password.*
 import javax.inject.Inject
 
 

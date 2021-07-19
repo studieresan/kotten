@@ -5,10 +5,7 @@ import com.studieresan.studs.BaseView
 
 interface EventDetailContract {
 
-    interface View : BaseView {
+    interface View : BaseView
 
-    }
-
-    interface Presenter : BasePresenter {
-    }
+    interface Presenter : BasePresenter
 }

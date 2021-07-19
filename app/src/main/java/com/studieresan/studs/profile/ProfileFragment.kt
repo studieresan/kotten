@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.fragment_profile.*
 import com.studieresan.studs.LauncherActivity
 import com.studieresan.studs.R
 import com.studieresan.studs.data.StudsPreferences
+import kotlinx.android.synthetic.main.fragment_profile.*
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 class ProfileFragment : Fragment() {
 
@@ -45,11 +47,24 @@ class ProfileFragment : Fragment() {
 
         // Set the position
         tv_member_position.text = StudsPreferences.getPosition(requireContext())
+
+        // Set countdown values
+        val today = LocalDate.now()
+        val tripDate = LocalDate.of(2021, 7, 23)
+        val daysLeft = today.until(tripDate, ChronoUnit.DAYS)
+        tv_countdown_number.text = daysLeft.toString()
+        tv_countdown_emojis.text = getRandomExcitedEmoji().plus(getRandomExcitedEmoji())
+
     }
 
     private fun logOut() {
         StudsPreferences.logOut(requireContext())
         startActivity(LauncherActivity.makeIntent(requireContext()))
         requireActivity().finish()
+    }
+
+    private fun getRandomExcitedEmoji(): String {
+        val emojis = listOf("🥳", "🤯", "😍", "✨", "🎂", "☀️", "💃", "🍻", "😇", "🤩", "🥰", "🚀", "🇸🇪", "🏖", "🏠", "🚞")
+        return emojis.random()
     }
 }

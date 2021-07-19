@@ -1,14 +1,14 @@
 package com.studieresan.studs.net
 
+import com.studieresan.studs.data.StudsService
+import com.studieresan.studs.data.models.ForgotPasswordRequest
+import com.studieresan.studs.data.models.LoginResponse
+import com.studieresan.studs.data.models.LoginUserRequest
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
-import com.studieresan.studs.data.StudsService
-import com.studieresan.studs.data.models.ForgotPasswordRequest
-import com.studieresan.studs.data.models.LoginResponse
-import com.studieresan.studs.data.models.LoginUserRequest
 import javax.inject.Inject
 
 class StudsRepository @Inject constructor(private val studsService: StudsService) {

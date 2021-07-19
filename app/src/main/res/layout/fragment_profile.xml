@@ -45,10 +45,47 @@
             tools:text="Head of Head" />
 
         <LinearLayout
+            android:id="@+id/layout_countdown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/default_margin_medium"
+            android:layout_marginBottom="@dimen/default_margin_large"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_countdown_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:text="24" />
+
+            <TextView
+                android:id="@+id/tv_countdown_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/tr_countdown2"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/tv_countdown_emojis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_mini"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="16sp"
+                tools:text="🥳🇸🇪" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/layout_notifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin_large"
             android:clickable="true"
             android:focusable="true"
             android:orientation="vertical">

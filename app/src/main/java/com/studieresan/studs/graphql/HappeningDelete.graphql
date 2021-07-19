@@ -1,0 +1,3 @@
+mutation HappeningDelete($id: ID) {
+  happeningDelete(id: $id)
+}

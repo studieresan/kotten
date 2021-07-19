@@ -1,0 +1,5 @@
+mutation HappeningCreate($happening: HappeningInput) {
+  happeningCreate(fields: $happening) {
+    title
+  }
+}

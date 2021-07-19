@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_login.*
 import com.studieresan.studs.MainActivity
 import com.studieresan.studs.R
 import com.studieresan.studs.StudsActivity
@@ -15,6 +14,7 @@ import com.studieresan.studs.data.models.LoginResponse
 import com.studieresan.studs.login.contracts.LoginContract
 import com.studieresan.studs.login.presenters.LoginPresenter
 import com.studieresan.studs.net.StudsRepository
+import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 class LoginActivity : StudsActivity(), LoginContract.View {
@@ -62,6 +62,7 @@ class LoginActivity : StudsActivity(), LoginContract.View {
     override fun loginSuccessful(loginResponse: LoginResponse) {
         StudsPreferences.run {
             logIn(this@LoginActivity, et_email.text.toString())
+            setID(this@LoginActivity, loginResponse.id)
             setName(this@LoginActivity, loginResponse.name)
             setPicture(this@LoginActivity, loginResponse.picture)
             setPosition(this@LoginActivity, loginResponse.role)

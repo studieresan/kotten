@@ -12,7 +12,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         val darkModeSwitch = findPreference<SwitchPreference>("darkmode_preference")
 
-        darkModeSwitch?.setOnPreferenceChangeListener() { _, isChecked ->
+        darkModeSwitch?.setOnPreferenceChangeListener { _, isChecked ->
             if (isChecked as Boolean) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 darkModeSwitch.isChecked = true
